@@ -14,15 +14,16 @@ router.post('/createuser',[
 
 ],async (req, res) => {
     const errors = validationResult(req);
+    let success=false;
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({success, errors: errors.array() });
     }
-  
+    
     try {
       let a= await User.findOne({email:req.body.email});
       if(a)
       {
-        return res.status(400).send("Email Id Already in use");
+        return res.status(400).json({success,error:"Email already in use"});
       }
       const salt=await bcrypt.genSalt(10);
       const secPassword= await bcrypt.hash(req.body.password,salt);
@@ -39,9 +40,9 @@ router.post('/createuser',[
         }
       }
 
-
+       success=true;
       const authToken=jwt.sign(data,JWT_SECRET);
-      res.json({authToken});
+      res.json({success,authToken});
       
 
 
@@ -70,6 +71,7 @@ router.post('/login',[
   }
 
   const {email,password}=req.body;
+  let success=false;
   try {
 
     let user= await User.findOne({email});
@@ -80,8 +82,8 @@ router.post('/login',[
 
     const passwordCompare= await bcrypt.compare(password,user.password);
     if(!passwordCompare)
-    {
-      return res.status(400).json({error:"No User Found "});
+    {  
+      return res.status(400).json({success,error:"No User Found "});
     }
 
     const data={
@@ -93,7 +95,8 @@ router.post('/login',[
 
 
     const authToken=jwt.sign(data,JWT_SECRET);
-    res.json({authToken});
+    success=true;
+    res.json({success,authToken});
     
 
     

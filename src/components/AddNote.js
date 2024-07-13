@@ -1,13 +1,18 @@
 import React ,{useContext, useState} from "react";
 import noteContext from '../context/notes/noteContext'
 
-const AddNote = () => {
+const AddNote = (props) => {
+  
+  
     const context=useContext(noteContext);
     const {addNote}=context;
-    const [note,setNote]=useState({title:"",description:"",tag:"default"});
+    const [note,setNote]=useState({title:"",description:"",tag:""});
     const handleClick=(e)=>{
-      e.preventDefault();    //avoid page reload
+      e.preventDefault(); //avoid page reload
       addNote(note.title,note.description,note.tag);
+      setNote({title:"",description:"",tag:""});
+      props.showAlert("Added Successfully","success")
+      
     }
     const onChange=(e)=>{
 
@@ -15,7 +20,8 @@ const AddNote = () => {
 
     }
   return (
-    <div className="container my-3">
+    <div  className="container my-3" >
+      
       <h1>Add a Note</h1>
 
       <form className="my-3">
@@ -27,9 +33,12 @@ const AddNote = () => {
             type="text"
             onChange={onChange}
             className="form-control"
+            placeholder="Enter title of minimum length 5"
             id="title"
+            value={note.title}
             name="title"
             aria-describedby="emailHelp"
+            minLength={5} required
           />
           
         </div>
@@ -40,22 +49,31 @@ const AddNote = () => {
           <input
             type="text"
             onChange={onChange}
+            placeholder="Enter description of minimum length 5"
+            value={note.description}
             className="form-control"
             id="description"
             name="description"
+            minLength={5} required
           />
         </div>
-        {/* <div className="mb-3 form-check">
-          <input
-            type="checkbox"
-            className="form-check-input"
-            id="exampleCheck1"
-          />
-          <label className="form-check-label" htmlFor="exampleCheck1">
-            Check me out
+        <div className="mb-3">
+          <label htmlFor="tag" className="form-label">
+            Tag
           </label>
-        </div> */}
-        <button type="submit" onClick={handleClick}  className="btn btn-primary">
+          <input
+            type="text"
+            value={note.tag}
+            onChange={onChange}
+            placeholder="Enter tag"
+            className="form-control"
+            id="tag"
+            name="tag"
+            minLength={5} required
+          />
+        </div>
+        
+        <button  disabled={note.title.length<5 || note.description.length<5}type="submit" onClick={handleClick}  className="btn btn-primary">
           Add Note
         </button>
       </form>
