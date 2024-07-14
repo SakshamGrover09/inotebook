@@ -12,6 +12,9 @@ import { useState } from 'react';
 
 function App() {
   const [alert,setAlert]=useState(null);
+
+  document.body.style.backgroundImage="url('https://img.freepik.com/free-vector/hand-painted-watercolor-abstract-watercolor-background_23-2149012404.jpg')";
+  
   
   const showAlert=(message,type)=>{
     setAlert({

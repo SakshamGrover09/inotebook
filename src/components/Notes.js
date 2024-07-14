@@ -13,6 +13,7 @@ const Notes = (props) => {
     {
       getNotes()
     }else{
+      props.showAlert("  Login to Continue...","danger")
       navigate("/login");
     }
    
@@ -53,25 +54,25 @@ const Notes = (props) => {
 </button>
 
 
-<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog">
-    <div className="modal-content">
+<div className="modal fade " id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog ">
+    <div className="modal-content cc">
       <div className="modal-header">
-        <h1 className="modal-title fs-5" id="exampleModalLabel">Edit Note</h1>
+        <h1 className="modal-title fs-5 pp" id="exampleModalLabel">Edit Note</h1>
         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div className="modal-body">
         
       <form className="my-3">
         <div className="mb-3">
-          <label htmlFor="title" className="form-label">
+          <label htmlFor="title" className="form-label pp">
             Title
           </label>
           <input
             type="text"
             value={note.etitle}
             onChange={onChange}
-            className="form-control"
+            className="form-control pp"
             id="etitle"
             name="etitle"
             aria-describedby="emailHelp"
@@ -80,28 +81,28 @@ const Notes = (props) => {
           
         </div>
         <div className="mb-3">
-          <label htmlFor="description" className="form-label">
+          <label htmlFor="description" className="form-label pp">
             Description
           </label>
           <input
             type="text"
             onChange={onChange}
             value={note.edescription}
-            className="form-control"
+            className="form-control pp"
             id="edescription"
             name="edescription"
             minLength={5} required
           />
         </div>
         <div className="mb-3">
-          <label htmlFor="tag" className="form-label">
+          <label htmlFor="tag" className="form-label pp">
             Tag
           </label>
           <input
             type="text"
             onChange={onChange}
             value={note.etag}
-            className="form-control"
+            className="form-control pp"
             id="etag"
             name="etag"
             minLength={5} required
@@ -112,8 +113,8 @@ const Notes = (props) => {
       </form>
       </div>
       <div className="modal-footer">
-        <button type="button" ref={refc} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button disabled={note.etitle.length<5 || note.edescription.length<5} type="button" onClick={handleClick} className="btn btn-primary">Update Note</button>
+        <button type="button" ref={refc} className="buttonn pp" data-bs-dismiss="modal">Close</button>
+        <button disabled={note.etitle.length<5 || note.edescription.length<5} type="button" onClick={handleClick} className="buttonn my-3 pp mx-6">Update Note</button>
       </div>
     </div>
   </div>
@@ -123,8 +124,8 @@ const Notes = (props) => {
 
     <div>
         <div className="row">
-        <h2>Your Notes</h2>
-        <div className="container mx-1">
+        <h2 className="pp">Your Notes</h2>
+        <div className="container mx-1 pp">
         {notes.length===0 && "No Notes To Display"}
         </div>
         {notes.map((note) => {

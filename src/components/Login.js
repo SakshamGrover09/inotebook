@@ -44,20 +44,45 @@ const Login = (props) => {
     }
 
   return (
-    <div className="container">
+    <div className="row">
+      <div className="col-md-3 ">
+        </div>
+     
+      <div className="col-md-3 ">
+      
+    <img height="420" width="320" src="https://img.freepik.com/free-photo/top-view-note-pad-colored-pencils-purple-background-with-copy-space_141793-11930.jpg"></img>
+
+  </div>
+  
+      <div className="col-md-3 border border-imp">
+   
         <form onSubmit={handleSubmit}>
-    <div className="form-group">
-      <label htmlFor="email">Email address</label>
-      <input type="email" className="form-control" onChange={onChange} id="email" value={credentials.email} name="email" aria-describedby="emailHelp" placeholder="Enter email"/>
+          <h1 className="pp mx-1">Welcome  </h1>
+          <h1 className="pp mx-1"> Back!! </h1>
+          <h3 className="pp mx-1">Login here.....</h3>
+          
+    <div className="form-group my-3">
+      <label className="pp" htmlFor="email"><i class="fa-solid fa-envelope"></i>  Email address</label>
+      <input type="email" className="form-control my-2 pp" onChange={onChange} id="email" value={credentials.email} name="email" aria-describedby="emailHelp" placeholder="Enter email address...."/>
      
     </div>
-    <div className="form-group">
-      <label htmlFor="password">Password</label>
-      <input type="password" className="form-control" id="password" onChange={onChange} value={credentials.password} name="password" placeholder="Password"/>
+    <div className="form-group my-2">
+      <label className="pp" htmlFor="password"><i class="fa-solid fa-unlock"></i>  Password</label>
+      <input type="password" className="form-control my-2 pp" id="password" onChange={onChange} value={credentials.password} name="password" placeholder="Enter password...."/>
     </div>
     
-    <button type="submit" className="btn btn-primary my-2" >Login</button>
-  </form></div>
+    <button type="submit"   className="buttonn my-3 pp mx-6 " >Login    </button>
+    
+  </form>
+  
+  </div>
+  <div className="col-md-3 ">
+        </div>
+  
+ 
+  </div>
+  
+
   )
 }
 
